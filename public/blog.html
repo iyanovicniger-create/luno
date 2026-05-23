@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Блог — CS2 Orbit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700&family=Syne:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-nav="blog">
+    <div class="space-bg" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="nebula nebula-a"></div>
+      <div class="nebula nebula-b"></div>
+      <div class="orbit-ring"></div>
+    </div>
+    <header class="header">
+      <div class="header__inner">
+        <div class="brand">
+          <a href="/sell" class="brand-link" title="Продать скины">
+            <span class="brand-mark" aria-hidden="true"></span>
+          </a>
+          <div>
+            <h1><a href="/sell" class="brand-link">CS2 <span class="brand-accent">Orbit</span></a></h1>
+            <p class="tagline">Новости и заметки</p>
+          </div>
+        </div>
+        <div id="siteNavMount" class="site-nav" aria-label="Разделы сайта"></div>
+        <nav class="nav nav--auth" id="authNav">
+          <a class="btn btn-steam" href="/auth/steam" id="btnLogin">Войти через Steam</a>
+          <div class="user hidden" id="userBox">
+            <div class="user-balance" aria-label="Баланс">
+              <div class="user-balance-row">
+                <span class="user-balance-label">Баланс</span>
+                <span class="user-balance-value" id="userBalanceValue">0&nbsp;₽</span>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnBalanceTopup">Пополнить</button>
+            </div>
+            <img class="avatar" id="avatar" alt="" width="40" height="40" />
+            <div class="user-meta">
+              <span class="user-name" id="userName"></span>
+              <a class="link" href="/auth/logout">Выйти</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="banner">
+        <p>
+          Заметки по CS2, Steam Trade и витрине. Оформление страницы такое же, как в разделе
+          <a class="link" href="/buy">Купить скины</a> — панель и строки списка.
+        </p>
+      </section>
+
+      <section class="panel" id="panel-blog">
+        <p class="muted">Статьи на этом сервере (демо-контент, ссылки пока заглушки).</p>
+
+        <div class="listings">
+          <article class="listing-row">
+            <div class="listing-row-main">
+              <img
+                class="listing-thumb"
+                src="https://picsum.photos/seed/blogfeat/144/144"
+                alt=""
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+              <div class="listing-row-text">
+                <div class="listing-item-title">Cache вернулась в CS2: официальный ремастер спустя семь лет</div>
+                <div class="muted small">Карта снова в ротации — кратко о графике, коллизиях и влиянии на мету.</div>
+              </div>
+            </div>
+            <div class="listing-row-actions">
+              <span class="muted small">30 апр. 2024</span>
+              <a class="btn btn-ghost btn-sm" href="#">Читать</a>
+            </div>
+          </article>
+
+          <article class="listing-row">
+            <div class="listing-row-main">
+              <img
+                class="listing-thumb"
+                src="https://picsum.photos/seed/blog1/144/144"
+                alt=""
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+              <div class="listing-row-text">
+                <div class="listing-item-title">Обновление CS2: хитбоксы и тикрейт серверов</div>
+                <div class="muted small">Что поменялось для игроков и для скинов в инвентаре.</div>
+              </div>
+            </div>
+            <div class="listing-row-actions">
+              <span class="muted small">28 апр. 2024</span>
+              <a class="btn btn-ghost btn-sm" href="#">Читать</a>
+            </div>
+          </article>
+
+          <article class="listing-row">
+            <div class="listing-row-main">
+              <img
+                class="listing-thumb"
+                src="https://picsum.photos/seed/blog2/144/144"
+                alt=""
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+              <div class="listing-row-text">
+                <div class="listing-item-title">Trade URL: зачем витрине и как проверить ссылку</div>
+                <div class="muted small">Без привязки URL объявление на «Продать» не создаётся.</div>
+              </div>
+            </div>
+            <div class="listing-row-actions">
+              <span class="muted small">22 апр. 2024</span>
+              <a class="btn btn-ghost btn-sm" href="#">Читать</a>
+            </div>
+          </article>
+
+          <article class="listing-row">
+            <div class="listing-row-main">
+              <img
+                class="listing-thumb"
+                src="https://picsum.photos/seed/blog3/144/144"
+                alt=""
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+              <div class="listing-row-text">
+                <div class="listing-item-title">Инвентарь закрыт: типичные ошибки при загрузке скинов</div>
+                <div class="muted small">Настройки конфиденциальности Steam и публичный профиль.</div>
+              </div>
+            </div>
+            <div class="listing-row-actions">
+              <span class="muted small">18 апр. 2024</span>
+              <a class="btn btn-ghost btn-sm" href="#">Читать</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="modal" id="modalTopup">
+      <form class="modal-form" id="formTopup">
+        <h2>Пополнение баланса</h2>
+        <p class="muted small">Демо без оплаты — сумма сразу зачисляется на счёт в этом приложении.</p>
+        <label>
+          Сумма, ₽
+          <input type="number" name="amount" min="1" max="500000" step="1" value="500" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modalTopupCancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Зачислить</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="socialFooterMount"></div>
+
+    <script src="/site-nav.js"></script>
+    <script src="/auth-header.js"></script>
+    <script src="/faq.js"></script>
+  </body>
+</html>

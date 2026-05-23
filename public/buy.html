@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Купить скины — CS2 Orbit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700&family=Syne:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/buy-layout.css" />
+  </head>
+  <body data-nav="buy">
+    <div class="space-bg" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="nebula nebula-a"></div>
+      <div class="nebula nebula-b"></div>
+      <div class="orbit-ring"></div>
+    </div>
+    <header class="header">
+      <div class="header__inner">
+        <div class="brand">
+          <a href="/sell" class="brand-link" title="Продать скины">
+            <span class="brand-mark" aria-hidden="true"></span>
+          </a>
+          <div>
+            <h1><a href="/sell" class="brand-link">CS2 <span class="brand-accent">Orbit</span></a></h1>
+            <p class="tagline">Витрина объявлений</p>
+          </div>
+        </div>
+        <div id="siteNavMount" class="site-nav" aria-label="Разделы сайта"></div>
+        <nav class="nav nav--auth" id="authNav">
+          <a class="btn btn-steam" href="/auth/steam" id="btnLogin">Войти через Steam</a>
+          <div class="user hidden" id="userBox">
+            <div class="user-balance" aria-label="Баланс">
+              <div class="user-balance-row">
+                <span class="user-balance-label">Баланс</span>
+                <span class="user-balance-value" id="userBalanceValue">0&nbsp;₽</span>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnBalanceTopup">Пополнить</button>
+            </div>
+            <img class="avatar" id="avatar" alt="" width="40" height="40" />
+            <div class="user-meta">
+              <span class="user-name" id="userName"></span>
+              <a class="link" href="/auth/logout">Выйти</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="buy-page">
+        <nav class="buy-crumb" aria-label="Хлебные крошки">
+          <a href="/sell">Главная</a>
+          <span class="buy-crumb-sep" aria-hidden="true">›</span>
+          <span class="buy-crumb-current">Купить скины</span>
+          <span class="buy-crumb-sep" aria-hidden="true">›</span>
+          <span>CS2</span>
+        </nav>
+
+        <h2 class="buy-page-title">Купить скины CS2</h2>
+
+        <div class="buy-category-ribbon" id="buyCategoryRibbon">
+          <button type="button" class="buy-cat-scroll buy-cat-scroll--prev" id="buyCatScrollPrev" aria-label="Прокрутить категории влево">
+            <svg class="buy-cat-scroll__svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M14 6l-6 6 6 6V6z" />
+            </svg>
+          </button>
+          <div class="buy-category-ribbon__viewport" id="buyCategoryViewport">
+            <div class="buy-category-bar" id="buyCategoryBar" aria-label="Категории оружия"></div>
+          </div>
+          <button type="button" class="buy-cat-scroll buy-cat-scroll--next" id="buyCatScrollNext" aria-label="Прокрутить категории вправо">
+            <svg class="buy-cat-scroll__svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M10 6l6 6-6 6V6z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="buy-layout">
+          <aside class="buy-sidebar" aria-label="Фильтры">
+            <div class="buy-sidebar-section">
+              <div class="buy-sidebar-head">
+                <span>Цена</span>
+                <button type="button" class="buy-price-reset" id="buyPriceRefresh" title="Сбросить только цену" aria-label="Сброс цены">
+                  <svg class="buy-price-reset__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="buy-price-row">
+                <input type="number" class="trade-input buy-price-input" id="buyPriceMin" min="0" step="1" placeholder="От, ₽" inputmode="numeric" />
+                <input type="number" class="trade-input buy-price-input" id="buyPriceMax" min="0" step="1" placeholder="До, ₽" inputmode="numeric" />
+              </div>
+            </div>
+
+            <div class="buy-sidebar-section">
+              <div class="buy-sidebar-head">Тип доставки</div>
+              <div class="buy-radio-group">
+                <label class="buy-radio"><input type="radio" name="buyDelivery" value="all" checked /> Все</label>
+                <label class="buy-radio"><input type="radio" name="buyDelivery" value="instant" /> Мгновенно</label>
+                <label class="buy-radio"><input type="radio" name="buyDelivery" value="12h" /> До 12 часов</label>
+              </div>
+            </div>
+
+            <div class="buy-sidebar-section">
+              <details class="buy-filter-fold">
+                <summary>Раритетность</summary>
+                <p class="muted small">В демо-витрине нет данных Steam по редкости — позже можно связать с API.</p>
+              </details>
+              <details class="buy-filter-fold">
+                <summary>Износ</summary>
+                <p class="muted small">Износ предмета в объявлении не хранится.</p>
+              </details>
+              <details class="buy-filter-fold">
+                <summary>Float</summary>
+                <p class="muted small">Float в этом прототипе не выводится.</p>
+              </details>
+              <details class="buy-filter-fold">
+                <summary>Фаза</summary>
+                <p class="muted small">Для ножей с фазами — не реализовано.</p>
+              </details>
+              <details class="buy-filter-fold">
+                <summary>Стикеры</summary>
+                <p class="muted small">Нет разбора стикеров в JSON объявления.</p>
+              </details>
+              <details class="buy-filter-fold">
+                <summary>Брелок</summary>
+                <p class="muted small">—</p>
+              </details>
+            </div>
+
+            <div class="buy-sidebar-section">
+              <div class="buy-sidebar-head">Другое</div>
+              <div class="buy-check-list">
+                <label class="buy-check"><input type="checkbox" id="buyChSt" /> StatTrak™</label>
+                <label class="buy-check"><input type="checkbox" id="buyChSouv" /> Souvenir</label>
+                <label class="buy-check"><input type="checkbox" id="buyChTag" /> С биркой</label>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-ghost buy-reset" id="buyFilterReset">Сбросить фильтры</button>
+          </aside>
+
+          <div class="buy-main">
+            <div class="buy-toolbar">
+              <button type="button" class="btn btn-ghost btn-sm" id="buyRefreshToolbar" title="Обновить список" aria-label="Обновить">
+                ↻
+              </button>
+              <div class="buy-game-tabs" role="group" aria-label="Игра">
+                <button type="button" class="buy-game-tab buy-game-tab--on" disabled>CS2</button>
+                <button type="button" class="buy-game-tab" disabled title="Скоро">Dota</button>
+                <button type="button" class="buy-game-tab" disabled title="Скоро">Rust</button>
+              </div>
+              <input type="search" id="buySearch" class="trade-input buy-search" placeholder="Поиск по скинам" autocomplete="off" spellcheck="false" />
+              <label class="buy-sort-wrap">
+                <span class="buy-sort-label">Сортировка</span>
+                <span class="buy-sort-select-shell">
+                  <select id="buySort" class="buy-sort-select-native" title="Порядок списка">
+                    <option value="price-asc">Цена ↑</option>
+                    <option value="price-desc">Цена ↓</option>
+                    <option value="name-asc">Название A→Z</option>
+                    <option value="name-desc">Название Z→A</option>
+                  </select>
+                  <span class="buy-sort-select-chev" aria-hidden="true">
+                    <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                      <path d="M5 2L2 5h6L5 2z" fill="currentColor" opacity="0.85" />
+                      <path d="M5 12l3-3H2l3 3z" fill="currentColor" opacity="0.85" />
+                    </svg>
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <p class="muted buy-listings-intro">Объявления на этом сервере. Чтобы выставить свой предмет — раздел «Продать скины».</p>
+            <div class="listings" id="listingsGrid"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <dialog class="modal" id="modalTopup">
+      <form class="modal-form" id="formTopup">
+        <h2>Пополнение баланса</h2>
+        <p class="muted small">Демо без оплаты — сумма сразу зачисляется на счёт в этом приложении.</p>
+        <label>
+          Сумма, ₽
+          <input type="number" name="amount" min="1" max="500000" step="1" value="500" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modalTopupCancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Зачислить</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="socialFooterMount"></div>
+
+    <script src="/site-nav.js"></script>
+    <script src="/auth-header.js"></script>
+    <script src="/buy.js"></script>
+  </body>
+</html>

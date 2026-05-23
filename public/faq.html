@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ — CS2 Orbit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700&family=Syne:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-nav="faq">
+    <div class="space-bg" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="nebula nebula-a"></div>
+      <div class="nebula nebula-b"></div>
+      <div class="orbit-ring"></div>
+    </div>
+    <header class="header">
+      <div class="header__inner">
+        <div class="brand">
+          <a href="/sell" class="brand-link" title="Продать скины">
+            <span class="brand-mark" aria-hidden="true"></span>
+          </a>
+          <div>
+            <h1><a href="/sell" class="brand-link">CS2 <span class="brand-accent">Orbit</span></a></h1>
+            <p class="tagline">Частые вопросы</p>
+          </div>
+        </div>
+        <div id="siteNavMount" class="site-nav" aria-label="Разделы сайта"></div>
+        <nav class="nav nav--auth" id="authNav">
+          <a class="btn btn-steam" href="/auth/steam" id="btnLogin">Войти через Steam</a>
+          <div class="user hidden" id="userBox">
+            <div class="user-balance" aria-label="Баланс">
+              <div class="user-balance-row">
+                <span class="user-balance-label">Баланс</span>
+                <span class="user-balance-value" id="userBalanceValue">0&nbsp;₽</span>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnBalanceTopup">Пополнить</button>
+            </div>
+            <img class="avatar" id="avatar" alt="" width="40" height="40" />
+            <div class="user-meta">
+              <span class="user-name" id="userName"></span>
+              <a class="link" href="/auth/logout">Выйти</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="banner">
+        <p>
+          Короткие ответы по работе демо-витрины и Steam. Оформление как на странице
+          <a class="link" href="/buy">Купить скины</a>.
+        </p>
+      </section>
+      <section class="panel" id="panel-faq">
+        <p class="muted">Частые вопросы на этом сервере.</p>
+        <article class="trade-card faq-block">
+          <h2 class="trade-card-title">Не загружается инвентарь</h2>
+          <p class="muted small">
+            Профиль Steam и инвентарь CS2 должны быть открыты для просмотра в настройках конфиденциальности. Проверьте
+            <code>STEAM_API_KEY</code> и <code>PUBLIC_URL</code> в файле <code>.env</code>.
+          </p>
+        </article>
+        <article class="trade-card faq-block">
+          <h2 class="trade-card-title">Зачем Trade URL</h2>
+          <p class="muted small">
+            Покупатель открывает официальное окно обмена Steam по вашей ссылке. Без привязки URL объявление не создаётся.
+          </p>
+        </article>
+        <article class="trade-card faq-block">
+          <h2 class="trade-card-title">Это не магазин Valve</h2>
+          <p class="muted small">
+            Сайт не связан с Steam и не проводит оплату за вас — только витрина цен и ссылок на обмен между пользователями.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <dialog class="modal" id="modalTopup">
+      <form class="modal-form" id="formTopup">
+        <h2>Пополнение баланса</h2>
+        <p class="muted small">Демо без оплаты — сумма сразу зачисляется на счёт в этом приложении.</p>
+        <label>
+          Сумма, ₽
+          <input type="number" name="amount" min="1" max="500000" step="1" value="500" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modalTopupCancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Зачислить</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="socialFooterMount"></div>
+
+    <script src="/site-nav.js"></script>
+    <script src="/auth-header.js"></script>
+    <script src="/faq.js"></script>
+  </body>
+</html>

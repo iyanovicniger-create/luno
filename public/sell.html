@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Продать скины — CS2 Orbit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700&family=Syne:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-nav="sell">
+    <div class="space-bg" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="nebula nebula-a"></div>
+      <div class="nebula nebula-b"></div>
+      <div class="orbit-ring"></div>
+    </div>
+    <header class="header">
+      <div class="header__inner">
+        <div class="brand">
+          <a href="/sell" class="brand-link" title="На главную продажи">
+            <span class="brand-mark" aria-hidden="true"></span>
+          </a>
+          <div>
+            <h1><a href="/sell" class="brand-link">CS2 <span class="brand-accent">Orbit</span></a></h1>
+            <p class="tagline">Steam · инвентарь CS2 · витрина</p>
+          </div>
+        </div>
+        <div id="siteNavMount" class="site-nav" aria-label="Разделы сайта"></div>
+        <nav class="nav nav--auth" id="authNav">
+          <a class="btn btn-steam" href="/auth/steam" id="btnLogin">Войти через Steam</a>
+          <div class="user hidden" id="userBox">
+            <div class="user-balance" aria-label="Баланс">
+              <div class="user-balance-row">
+                <span class="user-balance-label">Баланс</span>
+                <span class="user-balance-value" id="userBalanceValue">0&nbsp;₽</span>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btnBalanceTopup">Пополнить</button>
+            </div>
+            <img class="avatar" id="avatar" alt="" width="40" height="40" />
+            <div class="user-meta">
+              <span class="user-name" id="userName"></span>
+              <a class="link" href="/auth/logout">Выйти</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="banner">
+        <p>
+          Подключение к <strong>Steam</strong>: вход и инвентарь CS2 (AppID 730). Витрина объявлений — обмен и оплата по
+          договорённости через Steam Trade. Объявления смотрите в разделе
+          <a class="link" href="/buy">Купить скины</a>.
+        </p>
+      </section>
+
+      <section class="panel" id="panel-sell">
+        <p class="muted">Инвентарь и выставление предметов на витрину (как список на странице «Купить скины»).</p>
+
+        <div class="trade-card hidden" id="tradeCard">
+          <h2 class="trade-card-title">Steam Trade URL</h2>
+          <p class="muted small trade-card-hint">
+            Steam → Инвентарь → «Обмен предметами…» → «Кто может отправлять мне предложения обмена?» → скопируйте
+            <strong>ссылку на обмен</strong> и вставьте ниже. Без неё объявления на витрине недоступны.
+          </p>
+          <div class="trade-row">
+            <input
+              type="url"
+              id="tradeUrlInput"
+              class="trade-input"
+              placeholder="https://steamcommunity.com/tradeoffer/new/?partner=…&token=…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button type="button" class="btn btn-primary" id="btnSaveTradeUrl">Сохранить</button>
+            <button type="button" class="btn btn-ghost" id="btnClearTradeUrl">Сбросить</button>
+          </div>
+          <p class="trade-status" id="tradeUrlStatus"></p>
+        </div>
+
+        <div class="toolbar hidden" id="invToolbar">
+          <input
+            type="search"
+            id="invSearch"
+            class="trade-input"
+            style="flex: 1 1 200px; max-width: 320px; min-width: 140px"
+            placeholder="Поиск по скинам"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="btn btn-ghost btn-sm" id="btnSortPrice" title="Порядок: как в Steam → A→Z → Z→A">
+            По имени
+          </button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnRefreshInv">Обновить</button>
+          <span class="status" id="invStatus" aria-live="polite"></span>
+        </div>
+
+        <div class="grid" id="invGrid"></div>
+      </section>
+    </main>
+
+    <dialog class="modal" id="modalSell">
+      <form class="modal-form" id="formSell">
+        <h2>Выставить на витрину</h2>
+        <p class="muted small" id="sellItemName"></p>
+        <label>
+          Цена, ₽
+          <input type="number" name="price" min="1" step="1" required />
+        </label>
+        <label>
+          Заметка покупателю (необязательно)
+          <input type="text" name="note" maxlength="200" placeholder="Например: только через Steam Trade" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modalCancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Опубликовать</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="modalTopup">
+      <form class="modal-form" id="formTopup">
+        <h2>Пополнение баланса</h2>
+        <p class="muted small">Демо без оплаты — сумма сразу зачисляется на счёт в этом приложении.</p>
+        <label>
+          Сумма, ₽
+          <input type="number" name="amount" min="1" max="500000" step="1" value="500" required />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modalTopupCancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Зачислить</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="socialFooterMount"></div>
+
+    <script src="/site-nav.js"></script>
+    <script src="/auth-header.js"></script>
+    <script src="/sell.js"></script>
+  </body>
+</html>
